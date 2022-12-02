@@ -1,4 +1,6 @@
 import pymongo, random, pprint
+import sys
+import subprocess
 from faker import Faker
 
 client = pymongo.MongoClient('mongodb://localhost:27017/')
@@ -43,6 +45,11 @@ def display_data(d):
     print("\n")
 
 if __name__ == "__main__":
+    try:
+        subprocess.check_call([sys.executable, '-m', 'pip', 'install', '-r','requirements.txt'])
+    except subprocess.CalledProcessError:
+        print("Error installing requirements.txt, please install manually")
+    
     while True:
         x = input("Append Commands: add_user (ad), add_post (ap), add_user_activity (aua), exit (e) or to view records (db): ")
         if x == "ad":
